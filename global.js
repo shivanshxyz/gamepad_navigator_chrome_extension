@@ -24,10 +24,17 @@ window.addEventListener( "rightbumperpressed", function() {
 	window.history.forward();
 } );
 
-window.addEventListener( "startbuttonpressed", function() {
-	chrome.runtime.sendMessage( { eventType: "newtabrequested" }  );
-} );
+// zooming in and out using analogs
+window.addEventListener( "rightanaloghorizontalpoll", function( e ) {
+	let rightValue = e.detail.current;
+	let leftValue = e.detail.controller.axes[0];
+	let avg = ( rightValue * -1 + leftValue ) / 2;
 
-window.addEventListener( "selectbuttonpressed", function() {
-	chrome.runtime.sendMessage( { eventType: "closecurrenttabrequested" }  );
+	if ( rightValue > 0.2 && leftValue < -0.2 ) {
+		console.log( avg );
+		chrome.runtime.sendMessage( {eventType: "requestzoom", factor: avg} );
+	} else if ( rightValue < -0.2 && leftValue > 0.2 ) {
+		console.log( avg );
+		chrome.runtime.sendMessage( {eventType: "requestzoom", factor: avg} );
+	}
 } );
