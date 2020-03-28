@@ -14,13 +14,20 @@ window.addEventListener( "rightanalogverticalpoll", function( e ) {
 	window.scrollBy( 0, val * m );
 } );
 
-// going forward/backward through history
-window.addEventListener( "bbuttonpressed", function( e ) {
-	let leftBumper = e.detail.controller.buttons[4];
-	let rightBumper = e.detail.controller.buttons[5];
-	if ( leftBumper.pressed && !rightBumper.pressed ) {
-		window.history.back();
-	} else if ( rightBumper.pressed && !leftBumper.pressed ) {
-		window.history.forward();
-	}
+// browsing backward
+window.addEventListener( "leftbumperpressed", function() {
+	window.history.back();
+} );
+
+// browsing forward
+window.addEventListener( "rightbumperpressed", function() {
+	window.history.forward();
+} );
+
+window.addEventListener( "startbuttonpressed", function() {
+	chrome.runtime.sendMessage( { eventType: "newtabrequested" }  );
+} );
+
+window.addEventListener( "selectbuttonpressed", function() {
+	chrome.runtime.sendMessage( { eventType: "closecurrenttabrequested" }  );
 } );
