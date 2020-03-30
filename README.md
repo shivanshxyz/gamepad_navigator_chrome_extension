@@ -1,11 +1,11 @@
 # Chrome Navigator
 
+### Chrome Navigator is an open source project that allows you to browse chrome using your Xbox / PlayStation / other controllers!
+
 ### How to setup :
 1) Open chrome://extensions/
 2) Enable developer options.
 3) Select load unpacked and naviagte to the extension directory.
-
-### Chrome Navigator is an open source project that allows you to browse chrome using your Xbox / PlayStation / other controllers!
 
 ###### NOTE: All the controls mentioned below are with respect to the Xbox One Controller.
 
